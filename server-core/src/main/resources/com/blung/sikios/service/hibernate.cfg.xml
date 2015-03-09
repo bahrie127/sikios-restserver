@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.show_sql">
+            true
+        </property>
+        <property name="hibernate.format_sql">
+            true
+        </property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <mapping class="com.blung.sikios.domain.Kios"/>
+        <mapping class="com.blung.sikios.domain.Cabang"/>
+        <mapping class="com.blung.sikios.domain.Karyawan"/>
+        <mapping class="com.blung.sikios.domain.Barang"/>
+        <mapping class="com.blung.sikios.domain.DetailPembelian"/>
+        <mapping class="com.blung.sikios.domain.DetailPenjualan"/>
+        <mapping class="com.blung.sikios.domain.Hutang"/>
+        <mapping class="com.blung.sikios.domain.LogKios"/>
+        <mapping class="com.blung.sikios.domain.LogSystem"/>
+        <mapping class="com.blung.sikios.domain.PembayaranHutang"/>
+        <mapping class="com.blung.sikios.domain.PembayaranPiutang"/>
+        <mapping class="com.blung.sikios.domain.PembayaranKios"/>
+        <mapping class="com.blung.sikios.domain.Piutang"/>
+        <mapping class="com.blung.sikios.domain.Supplier"/>
+        <mapping class="com.blung.sikios.domain.User"/>
+        <mapping class="com.blung.sikios.domain.UserKios"/>
+        <mapping class="com.blung.sikios.domain.Pembelian"/>
+        <mapping class="com.blung.sikios.domain.Penjualan"/>
+
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_server" default="compile.module.server">
+  <dirname property="module.server.basedir" file="${ant.file.module_server}"/>
+  
+  <property name="module.jdk.home.server" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.server" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.server" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.server" value="${compiler.args}"/>
+  
+  <property name="server.output.dir" value="${module.server.basedir}/target/classes"/>
+  <property name="server.testoutput.dir" value="${module.server.basedir}/target/test-classes"/>
+  
+  <path id="server.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="server.module.production.classpath">
+    <path refid="${module.jdk.classpath.server}"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.1.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:1.6.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+  </path>
+  
+  <path id="server.runtime.production.module.classpath">
+    <pathelement location="${server.output.dir}"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.6.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.6.1.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:0.9.27.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:0.9.27.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:1.6.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+  </path>
+  
+  <path id="server.module.classpath">
+    <path refid="${module.jdk.classpath.server}"/>
+    <pathelement location="${server.output.dir}"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.6.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.6.1.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:0.9.27.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:0.9.27.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:1.6.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+  </path>
+  
+  <path id="server.runtime.module.classpath">
+    <pathelement location="${server.testoutput.dir}"/>
+    <pathelement location="${server.output.dir}"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.6.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.6.1.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:0.9.27.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:0.9.27.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:1.6.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.server">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.server">
+    <patternset refid="excluded.from.module.server"/>
+  </patternset>
+  
+  
+  <target name="compile.module.server" depends="compile.module.server.production,compile.module.server.tests" description="Compile module server"/>
+  
+  <target name="compile.module.server.production" depends="register.custom.compilers" description="Compile module server; production classes"/>
+  
+  <target name="compile.module.server.tests" depends="register.custom.compilers,compile.module.server.production" description="compile module server; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.server" description="cleanup module">
+    <delete dir="${server.output.dir}"/>
+    <delete dir="${server.testoutput.dir}"/>
+  </target>
+</project>
